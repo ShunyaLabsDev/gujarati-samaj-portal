@@ -62,19 +62,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gujarati_samaj.wsgi.application'
 
 # Database - PostgreSQL (Primary) with SQLite fallback
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('DB_NAME', 'gujarati_samaj_db'),
-#         'USER': os.environ.get('DB_USER', 'samaj_user'),
-#         'PASSWORD': os.environ.get('DB_PASSWORD', 'samaj_password_123'),
-#         'HOST': os.environ.get('DB_HOST', 'localhost'),
-#         'PORT': os.environ.get('DB_PORT', '5432'),
-#         'OPTIONS': {
-#             'client_encoding': 'UTF8',
-#         },
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'gujarati_samaj_db'),
+        'USER': os.environ.get('DB_USER', 'samaj_user'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'samaj_password_123'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+        'OPTIONS': {
+            'client_encoding': 'UTF8',
+        },
+    }
+}
 
 # SQLite fallback for development/demo:
 DATABASES = {
