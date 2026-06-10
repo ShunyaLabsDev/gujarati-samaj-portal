@@ -7,14 +7,12 @@ import os
 from pathlib import Path
 import dj_database_url
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-gujarati-samaj-change-this-in-production-use-env-var'
-
-DEBUG = True  # Set to False in production
-
-ALLOWED_HOSTS = ['*']
+# ── Security (reads from Railway environment variables) ────
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-dev-only')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -117,7 +115,3 @@ LOGOUT_REDIRECT_URL = '/'
 # Session
 SESSION_COOKIE_AGE = 86400 * 7  # 7 days
 
-# ── Security ──────────────────────────────────────────────
-SECRET_KEY = os.environ.get('SECRET_KEY', 'your-local-dev-key-here')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
