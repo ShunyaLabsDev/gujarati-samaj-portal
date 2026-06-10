@@ -115,3 +115,11 @@ LOGOUT_REDIRECT_URL = '/'
 # Session
 SESSION_COOKIE_AGE = 86400 * 7  # 7 days
 
+# Add this near the bottom of settings.py
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-fd77f.up.railway.app',
+]
+
+# These fix CSRF behind Railway's reverse proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
