@@ -1,0 +1,82 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Add Member{% endblock %}
+{% block page_title %}Add Member / સભ્ય ઉમેરો{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Family Info Card -->
+        <div class="content-card mb-3">
+            <div style="padding: 1rem 1.25rem; display:flex; align-items:center; gap:12px; background:rgba(255,140,0,0.04);">
+                <div style="width:44px; height:44px; background:var(--dark-blue); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:1.1rem; flex-shrink:0;">
+                    {{ family.family_name|first }}
+                </div>
+                <div>
+                    <div style="font-weight:700; color:var(--dark-blue); font-size:15px; font-family:'Noto Sans Gujarati',sans-serif;">{{ family.family_name }}</div>
+                    <div style="font-size:12.5px; color:#888;">
+                        <i class="bi bi-geo-alt-fill" style="color:var(--saffron);"></i> {{ family.village }}
+                        &nbsp;|&nbsp; {{ family.family_id }}
+                        &nbsp;|&nbsp; {{ family.member_count }} members
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="content-card-header">
+                <div class="content-card-title">
+                    <i class="bi bi-person-plus-fill me-2" style="color:var(--saffron);"></i>Add New Member
+                </div>
+            </div>
+            <div style="padding: 1.5rem;">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">નામ / Name *</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">સંબંધ / Relation *</label>
+                            {{ form.relation }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">જાતિ / Gender *</label>
+                            {{ form.gender }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">જન્મ તારીખ / Date of Birth</label>
+                            {{ form.date_of_birth }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">શિક્ષણ / Education</label>
+                            {{ form.education }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">વ્યવસાય / Occupation</label>
+                            {{ form.occupation }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">મોબાઈલ / Mobile</label>
+                            {{ form.mobile }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">ફોટો / Photo</label>
+                            {{ form.photo }}
+                        </div>
+                    </div>
+                    <hr style="margin: 1.5rem 0; border-color: rgba(11,31,77,0.1);">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a href="{% url 'dashboard_families' %}" style="background:#F0F2F5; color:#444; border:none; border-radius:7px; padding:0.5rem 1.2rem; font-size:13.5px; font-weight:600; text-decoration:none;">
+                            Cancel
+                        </a>
+                        <button type="submit" style="background:var(--saffron); color:white; border:none; border-radius:7px; padding:0.5rem 1.5rem; font-size:13.5px; font-weight:600; cursor:pointer;">
+                            <i class="bi bi-person-check-fill me-1"></i>Add Member
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

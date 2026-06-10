@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | Gujarati Samaj</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff6b35 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px 0;
+    }
+    .register-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .logo-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo-icon {
+      width: 70px; height: 70px;
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 30px; color: white;
+    }
+    .logo-section h2 {
+      color: #ff6b35;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .logo-section p { color: #888; font-size: 14px; }
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ff6b35;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 20px 0 10px;
+      border-bottom: 2px solid #fff0e6;
+      padding-bottom: 6px;
+    }
+    .form-control:focus {
+      border-color: #ff6b35;
+      box-shadow: 0 0 0 0.2rem rgba(255,107,53,0.15);
+    }
+    .form-label { font-weight: 500; color: #555; font-size: 14px; }
+    .btn-register {
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white; border: none;
+      padding: 12px; font-size: 16px;
+      font-weight: 600; border-radius: 10px;
+      width: 100%; margin-top: 10px;
+      transition: opacity 0.2s;
+    }
+    .btn-register:hover { opacity: 0.9; color: white; }
+    .login-link {
+      text-align: center; margin-top: 20px;
+      color: #888; font-size: 14px;
+    }
+    .login-link a { color: #ff6b35; font-weight: 600; text-decoration: none; }
+    .errorlist { color: #dc3545; font-size: 13px; padding-left: 0; list-style: none; }
+  </style>
+</head>
+<body>
+
+<div class="register-card">
+  <div class="logo-section">
+    <div class="logo-icon"><i class="fas fa-om"></i></div>
+    <h2>Gujarati Samaj</h2>
+    <p>Community Management Portal — New Member Registration</p>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="section-title"><i class="fas fa-user me-2"></i>Personal Information</div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">First Name *</label>
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Last Name *</label>
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email Address *</label>
+      {{ form.email }}
+      {{ form.email.errors }}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Phone Number</label>
+      {{ form.phone }}
+      {{ form.phone.errors }}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Address</label>
+      {{ form.address }}
+      {{ form.address.errors }}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Profile Picture</label>
+      {{ form.profile_picture }}
+      {{ form.profile_picture.errors }}
+    </div>
+
+    <div class="section-title"><i class="fas fa-lock me-2"></i>Account Credentials</div>
+    <div class="mb-3">
+      <label class="form-label">Username *</label>
+      {{ form.username }}
+      {{ form.username.errors }}
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Password *</label>
+        {{ form.password1 }}
+        {{ form.password1.errors }}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Confirm Password *</label>
+        {{ form.password2 }}
+        {{ form.password2.errors }}
+      </div>
+    </div>
+
+    <button type="submit" class="btn-register">
+      <i class="fas fa-user-plus me-2"></i>Create Account
+    </button>
+  </form>
+
+  <div class="login-link">
+    Already have an account? <a href="{% url 'login' %}">Login here</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

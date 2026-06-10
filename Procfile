@@ -1,0 +1,1 @@
+web: gunicorn gujarati_samaj.wsgi --log-file -
