@@ -92,7 +92,7 @@
     {% endfor %}
   {% endif %}
 
-  <form method="POST" enctype="multipart/form-data">
+  <form method="POST"  action="{% url 'register' %}" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="section-title"><i class="fas fa-user me-2"></i>Personal Information</div>
