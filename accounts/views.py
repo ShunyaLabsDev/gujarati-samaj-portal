@@ -5,7 +5,7 @@ from .forms import RegistrationForm
 
 def register(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('dashboard_home')  # ← fix name
 
     if request.method == 'POST':
         form = RegistrationForm(request.POST, request.FILES)
